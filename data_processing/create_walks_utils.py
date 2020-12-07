@@ -36,13 +36,15 @@ def float_lookup(at_index, feat_dict):
 
 def fill_float_arr(walk_arr, feat_dict):
 	shape = walk_arr.shape
-	float_feat_arr = np.zeros((shape[0], 1, shape[2], shape[3]), dtype=np.float32)
+	float_feat_arr = np.zeros((shape[0], 2, shape[2], shape[3]), dtype=np.float32)
 	# Why is this for loop faster than np.apply_along_axis??!?!?
 	for a in range(shape[0]):
-		rel_feat_dict = feat_dict[a]["bond_float"]
+		atom_feat_dict = feat_dict[a]["atom_float"]
+		bond_feat_dict = feat_dict[a]["bond_float"]
 		for b in range(shape[2]):
 			for c in range(shape[3]):
-				float_feat_arr[a, 0, b, c] = float_lookup(walk_arr[a, 1, b, c], rel_feat_dict)
+				float_feat_arr[a, 0, b, c] = float_lookup(walk_arr[a, 0, b, c], atom_feat_dict)
+				float_feat_arr[a, 1, b, c] = float_lookup(walk_arr[a, 1, b, c], bond_feat_dict)
 	return float_feat_arr
 
 # Creates a folder with the given name, overwriting a folder if it already exists.

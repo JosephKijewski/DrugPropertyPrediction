@@ -197,7 +197,7 @@ class ResNet(Module):
 		self.base_width = width_per_group
 
 		self.embedding_layers = nn.ModuleList([Embedding(self.feat_nums[a], self.e_sizes[a]) for a in range(len(self.feat_nums))])
-		self.conv1 = Conv2d(sum(self.e_sizes) + 1, self.inplanes, kernel_size=7, stride=2, padding=3,
+		self.conv1 = Conv2d(sum(self.e_sizes) + 2, self.inplanes, kernel_size=7, stride=2, padding=3,
 							bias=False)
 		self.bn1 = norm_layer(self.inplanes)
 		self.relu = ReLU(inplace=True)
@@ -413,7 +413,7 @@ class DenseNet(nn.Module):
 
 		self.features = nn.Sequential(OrderedDict([
 			# change input size of conv2d from 3 to dependent on e_sizes
-			('conv0', nn.Conv2d(sum(e_sizes) + 1, num_init_features, kernel_size=7, stride=2,
+			('conv0', nn.Conv2d(sum(e_sizes) + 2, num_init_features, kernel_size=7, stride=2,
 								padding=3, bias=False)),
 			('norm0', nn.BatchNorm2d(num_init_features)),
 			('relu0', nn.ReLU(inplace=True)),

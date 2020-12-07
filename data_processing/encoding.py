@@ -103,21 +103,24 @@ def encode_atom(atom):
 
 def get_mol_feats(mol):
 	feat_dict = dict()
-	atom_feat_arr = np.zeros((mol.GetNumAtoms(), 4))
-	bond_feat_float_arr = np.zeros(mol.GetNumBonds())
+	atom_feat_int_arr = np.zeros((mol.GetNumAtoms(), 4))
+	atom_feat_float_arr = np.zeros(mol.getNumBonds())
 	bond_feat_int_arr = np.zeros(mol.GetNumBonds())
+	bond_feat_float_arr = np.zeros(mol.GetNumBonds())
 	for atom in mol.GetAtoms():
 		atom_idx = atom.GetIdx()
-		atom_feat_arr[atom_idx, :] = encode_atom(atom)
+		atom_feat_int_arr[atom_idx, :] = encode_atom(atom)
+		atom_feat_float_arr[atom_idx] = atom.getMass()
 	t = time.time()
 	conf = mol.GetConformer()
 	for bond in mol.GetBonds():
 		bond_idx = bond.GetIdx()
 		bond_feat_int_arr[bond_idx] = encode_bond(bond)
 		bond_feat_float_arr[bond_idx] = Chem.rdMolTransforms.GetBondLength(conf, bond.GetBeginAtomIdx(), bond.GetEndAtomIdx())
-	feat_dict["atom_int"] = atom_feat_arr.astype(np.uint8)
-	feat_dict["bond_float"] = bond_feat_float_arr
+	feat_dict["atom_int"] = atom_feat_int_arr.astype(np.uint8)
+	feat_dict["atom_float"] = atom_feat_float_arr
 	feat_dict["bond_int"] = bond_feat_int_arr.astype(np.uint8)
+	feat_dict["bond_float"] = bond_feat_float_arr
 	return feat_dict
 
 def get_feat_dict(path):
