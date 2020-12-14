@@ -40,10 +40,10 @@ print(len(qm9_val_ind))
 qm8_prop_arr = np.loadtxt(qm8_csv, delimiter=',', skiprows=1)[qm8_val_ind, :]
 qm9_prop_arr = np.loadtxt(qm9_csv, delimiter=',', skiprows=1, usecols=range(4, 16))[qm9_val_ind, :]
 
-qm8_mols_fn = "data/qm8/mols.pkl"
-qm8_props_fn = "data/qm8/props.csv"
-qm9_mols_fn = "data/qm9/mols.pkl"
-qm9_props_fn = "data/qm9/props.csv"
+qm8_mols_fn = "qm8/mols.pkl"
+qm8_props_fn = "qm8/props.csv"
+qm9_mols_fn = "qm9/mols.pkl"
+qm9_props_fn = "qm9/props.csv"
 
 np.savetxt(qm8_props_fn, qm8_prop_arr, delimiter=',')
 np.savetxt(qm9_props_fn, qm9_prop_arr, delimiter=',')
