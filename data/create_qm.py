@@ -37,7 +37,7 @@ for (i, mol) in enumerate(qm9_supplier):
 
 print(len(qm8_val_ind))
 print(len(qm9_val_ind))
-qm8_prop_arr = np.loadtxt(qm8_csv, delimiter=',', skiprows=1, usecols=range(1, 17))[qm8_val_ind, :]
+qm8_prop_arr = np.loadtxt(qm8_csv, delimiter=',', skiprows=1)[qm8_val_ind, :]
 qm9_prop_arr = np.loadtxt(qm9_csv, delimiter=',', skiprows=1, usecols=range(4, 16))[qm9_val_ind, :]
 
 qm8_mols_fn = "data/qm8/mols.pkl"
