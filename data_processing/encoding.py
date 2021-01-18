@@ -104,13 +104,13 @@ def encode_atom(atom):
 def get_mol_feats(mol):
 	feat_dict = dict()
 	atom_feat_int_arr = np.zeros((mol.GetNumAtoms(), 4))
-	atom_feat_float_arr = np.zeros(mol.getNumBonds())
+	atom_feat_float_arr = np.zeros(mol.GetNumAtoms())
 	bond_feat_int_arr = np.zeros(mol.GetNumBonds())
 	bond_feat_float_arr = np.zeros(mol.GetNumBonds())
 	for atom in mol.GetAtoms():
 		atom_idx = atom.GetIdx()
 		atom_feat_int_arr[atom_idx, :] = encode_atom(atom)
-		atom_feat_float_arr[atom_idx] = atom.getMass()
+		atom_feat_float_arr[atom_idx] = atom.GetMass()
 	t = time.time()
 	conf = mol.GetConformer()
 	for bond in mol.GetBonds():

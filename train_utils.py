@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 from torch import from_numpy
 
-from multiprocessing import shared_memory, Process, Lock
+from multiprocessing import Process, Lock
 from multiprocessing import cpu_count, current_process
 
 import psutil

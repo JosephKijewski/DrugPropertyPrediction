@@ -58,7 +58,10 @@ def create_walk_set(directory, mols, grid_size, set_num, feat_dict):
 	walk_list = []
 	process = psutil.Process(os.getpid())
 	print(process.memory_info().rss/1024/1024/1024)
+	i = 0
 	for mol in mols:
+		print(i)
+		i = i + 1
 		walk = get_one_walk(mol, grid_size)
 		walk_list.append(walk)
 	walk_array = np.array(walk_list, dtype=np.uint8)

@@ -16,7 +16,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
-from DataProcessing.rand_walk_code import *
+from data_processing.rand_walk_code import *
 from train_utils import save_plot, get_props, get_loaders
 from models import ResNet, masked_cross_entropy, BasicBlock, Bottleneck, densenet201, densenet121, densenet169, densenet161
 
@@ -126,7 +126,7 @@ def train(working_dir, grid_size, learning_rate, batch_size, num_walks, model_ty
 
 	for file_num in range(num_loads):
 		if file_num % 20 == 0:
-			model_file = open("../../scratch/" + fn + ".pkl", "wb")
+			model_file = open("../scratch/" + fn + ".pkl", "wb")
 			pickle.dump(model, model_file)
 			model_file.close()
 
